@@ -13,6 +13,11 @@ public class LexicalTwistPuzzle {
 
         System.out.print("Enter second word: ");
         String word2 = sc.nextLine();
+        if (word1.contains(" ") || word2.contains(" ")) {
+            System.out.println("Invalid input. Enter single words only.");
+            return;
+        }
+
 
         System.out.println("You entered: " + word1 + " and " + word2);
 
