@@ -13,13 +13,20 @@ public class LexicalTwistPuzzle {
 
         System.out.print("Enter second word: ");
         String word2 = sc.nextLine();
+
         if (word1.contains(" ") || word2.contains(" ")) {
             System.out.println("Invalid input. Enter single words only.");
+            sc.close();
             return;
         }
 
+        String reversed = new StringBuilder(word1).reverse().toString();
 
-        System.out.println("You entered: " + word1 + " and " + word2);
+        if (reversed.equalsIgnoreCase(word2)) {
+            System.out.println("Words are reverse of each other.");
+        } else {
+            System.out.println("Words are NOT reverse.");
+        }
 
         sc.close();
     }
