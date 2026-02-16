@@ -14,48 +14,33 @@ public class LexicalTwistPuzzle {
         System.out.print("Enter second word: ");
         String word2 = sc.nextLine();
 
-        if (word1.contains(" ") || word2.contains(" ")) {
+        if (!WordAnalyzer.isSingleWord(word1) ||
+                !WordAnalyzer.isSingleWord(word2)) {
+
             System.out.println("Invalid input.");
             sc.close();
             return;
         }
 
-        String reversed = new StringBuilder(word1).reverse().toString();
+        if (WordAnalyzer.isReverse(word1, word2)) {
 
-        if (reversed.equalsIgnoreCase(word2)) {
-
-            String transformed = word1
-                    .toLowerCase()
-                    .replaceAll("[aeiou]", "*");
-
-            System.out.println("Transformed word: " + transformed);
+            System.out.println(
+                    "Transformed word: "
+                            + WordAnalyzer.transform(word1)
+            );
 
         } else {
 
-            String combined = (word1 + word2).toUpperCase();
-
-            int vowels = 0;
-            int consonants = 0;
-
-            for (char ch : combined.toCharArray()) {
-                if ("AEIOU".indexOf(ch) != -1) {
-                    vowels++;
-                } else if (Character.isLetter(ch)) {
-                    consonants++;
-                }
-            }
-
-            String unique = "";
-            for (char ch : combined.toCharArray()) {
-                if (unique.indexOf(ch) == -1) {
-                    unique += ch;
-                }
-            }
+            String combined =
+                    WordAnalyzer.combine(word1, word2);
 
             System.out.println("Combined Word: " + combined);
-            System.out.println("Vowels: " + vowels);
-            System.out.println("Consonants: " + consonants);
-            System.out.println("Unique Characters: " + unique);
+            System.out.println("Vowels: "
+                    + WordAnalyzer.countVowels(combined));
+            System.out.println("Consonants: "
+                    + WordAnalyzer.countConsonants(combined));
+            System.out.println("Unique Characters: "
+                    + WordAnalyzer.uniqueChars(combined));
         }
 
         sc.close();
