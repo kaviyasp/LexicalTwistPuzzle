@@ -15,7 +15,7 @@ public class LexicalTwistPuzzle {
         String word2 = sc.nextLine();
 
         if (word1.contains(" ") || word2.contains(" ")) {
-            System.out.println("Invalid input. Enter single words only.");
+            System.out.println("Invalid input.");
             sc.close();
             return;
         }
@@ -31,7 +31,23 @@ public class LexicalTwistPuzzle {
             System.out.println("Transformed word: " + transformed);
 
         } else {
-            System.out.println("Words are NOT reverse.");
+
+            String combined = (word1 + word2).toUpperCase();
+
+            int vowels = 0;
+            int consonants = 0;
+
+            for (char ch : combined.toCharArray()) {
+                if ("AEIOU".indexOf(ch) != -1) {
+                    vowels++;
+                } else if (Character.isLetter(ch)) {
+                    consonants++;
+                }
+            }
+
+            System.out.println("Combined Word: " + combined);
+            System.out.println("Vowels: " + vowels);
+            System.out.println("Consonants: " + consonants);
         }
 
         sc.close();
