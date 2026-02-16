@@ -45,9 +45,17 @@ public class LexicalTwistPuzzle {
                 }
             }
 
+            String unique = "";
+            for (char ch : combined.toCharArray()) {
+                if (unique.indexOf(ch) == -1) {
+                    unique += ch;
+                }
+            }
+
             System.out.println("Combined Word: " + combined);
             System.out.println("Vowels: " + vowels);
             System.out.println("Consonants: " + consonants);
+            System.out.println("Unique Characters: " + unique);
         }
 
         sc.close();
